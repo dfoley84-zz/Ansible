@@ -12,5 +12,5 @@
       aws_access_key: "{{ aws_id }}"
       aws_secret_key: "{{ aws_key }}"
       region: "{{ aws_region }}"
-      instance_ids: i-0019ec0eed9995cc3
+      instance_ids: 
       state: running
