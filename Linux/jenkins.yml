@@ -7,16 +7,8 @@
   tasks:
     - name: Download jenkins repo
       command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-    - name: Import Jenkins CI key
-      rpm_key:
-      key: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
-      state: present
     - name: Install Jenkins
-      package:
-      name: “{{ item }}”
-      state: latest
-      with_items:
-        - jenkins
+      action: yum name=jenkins state=installed
     - name: Allow port 8080
       shell: iptables -I INPUT -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
     - name: Start the server
