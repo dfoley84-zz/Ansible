@@ -17,5 +17,5 @@
       service:
       name: jenkins
       state: started
-    - wait_for:
-      port: 8080
+    #- wait_for:
+    #  port: 8080
