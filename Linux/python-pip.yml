@@ -6,4 +6,4 @@
   gather_facts: no
   tasks:
     - name: Install Python-pip
-      actionL yum name=python-pip state=installed
+      action: yum name=python-pip state=installed
