@@ -34,7 +34,7 @@
     - name: Add default_domain_suffix to sssd.conf
       lineinfile:
         dest: /etc/sssd/sssd.conf
-        line: 'default_domain_suffix = vgtsi.datac'
+        line: 'default_domain_suffix = local.domain'
         insertafter: '^\[sssd\]'
       notify:
         - restart sssd
