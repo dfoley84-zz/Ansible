@@ -13,7 +13,7 @@
         - python3-dev 
         - python3-wheel
     - name: Install packages with PIP
-      pip: name = {{ item }}
+      pip: name = {{ item }} state = lastest
       with_items:
         - tensorflow 
         - keras
