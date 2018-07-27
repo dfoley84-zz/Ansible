@@ -6,7 +6,7 @@
   connection: ssh
   gather_facts: no
   vars:
-    username: foleyd
+    username: 
   tasks:
   - name: Install HTTPD Server on Centos
     yum:
