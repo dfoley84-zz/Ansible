@@ -1,0 +1,9 @@
+---
+- host: web
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no 
+    tasks:
+    - name: Set facts
+      
