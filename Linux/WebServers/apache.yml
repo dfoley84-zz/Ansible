@@ -20,4 +20,5 @@
     service:
       name: apache
       state: restarted
+      enabled: yes
 
