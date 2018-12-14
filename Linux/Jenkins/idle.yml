@@ -16,8 +16,8 @@
     - name: Update
       command: yum update
     - name: Install IDLE
-       action: yum name=python-tools state=present
-       when: >
+      action: yum name=python-tools state=present
+      when: >
         ansible_distribution == 'Centos'
         
         
