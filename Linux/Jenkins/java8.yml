@@ -1,8 +1,8 @@
 ---
-- hosts: Jenkins
+- hosts: all
   user: ansible
   sudo: yes
-  connection: ssh
+  connection: localhost
   vars:
     download_url: http://download.oracle.com/otn-pub/java/jdk/8u144-b01/jdk-8u144-linux-x64.tar.gz
     download_folder: /opt
