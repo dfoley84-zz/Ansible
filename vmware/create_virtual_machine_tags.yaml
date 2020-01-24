@@ -4,7 +4,7 @@
     gather_facts: false
     connection: local
     tasks:
-    - name: Read in powercli CSV file for hostnames with not Tags
+    - name: Read in powercli CSV file for hostnames with no Tags
       read_csv:
         path: vm_tags.csv
         register: test
