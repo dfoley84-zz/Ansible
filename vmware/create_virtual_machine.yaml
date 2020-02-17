@@ -1,19 +1,20 @@
 ---
-    - name: Creating Virutal Machine from VM template
+    - name: Running Create Virtual Machine Playbook
       hosts: localhost
       gather_facts: false
       connection: local
       tasks:
-        - name: Virtual Machine customization 
+        - name: Virtual Machine customization
           vmware_guest:
             validate_certs: no
             hostname: "{{ vcenter_hostname }}"
             username: "{{ vcenter_user }}"
             password: "{{ vcenter_pass }}"
             cluster : "{{ cluster_name }}"
+            customization_spec: " {{ VM_Custom_Spec }}"
             datacenter: "{{ datacenter_name }}"
-            name: "{{ vm_name }}"
-            template: "{{ vm_template }}"
+            name: "{{ VM_Name }}"
+            template: "{{ VM_Template }}"
             state: poweredon
             disk:
               - size_gb: "{{ disk_size }}"
@@ -30,10 +31,12 @@
               - "{{ second_dns_server_ip }}"
               type: static
               device_type: "{{ network_type }}"
+            customization:
+              autologon: yes
             hardware:
               memory_mb: "{{ vm_memory }}"
               num_cpus: "{{ vm_cpu }}"
               boot_firmware: "efi"
-              version: 12
+              version: 11
           delegate_to: localhost
            # wait_for_ip_address: True
