@@ -1,0 +1,24 @@
+---
+  - name: Running Service Now Ticket To Disable Monitoring Playbook
+    hosts: localhost
+    connection: local
+
+    tasks:
+    - name: Creating Request
+      uri:
+        url: /api/v1/catalog/
+        method: POST
+        user: 
+        password: 
+        body_format: json
+        body: '{
+        "requestor":"",
+        "user_id": ""
+        }'
+
+        force_basic_auth: yes
+        #follow_redirects: all
+        status_code: 200
+      resgtister: data
+    - debug:
+        var: data
