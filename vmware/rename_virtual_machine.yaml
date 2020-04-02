@@ -1,15 +1,28 @@
 ---
-    - name: Rename a virtual machine (requires the virtual machine's uuid)
-      hosts: localhost
-      gather_facts: false
-      connection: local
-      tasks:
-      - vmware_guest:
-          hostname: "{{ vcenter_hostname }}"
-          username: "{{ vcenter_username }}"
-          password: "{{ vcenter_password }}"
-          validate_certs: no
-          uuid: "{{ vm_uuid }}"
-          name: "{{ new_virtual_machine_name }}"
-          state: present
-      delegate_to: localhost
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - vmware_guest_info:
+      hostname: {{vCenter}}
+      username: {{}}
+      password:  {{pass}}
+      validate_certs: no
+      datacenter: {{ Cluster }}
+      name: {{ vm_name }}
+      schema: "vsphere"
+      properties: ["config.uuid"]
+    delegate_to: localhost
+    register: vminfo
+  - debug:
+      var: vminfo
+
+  - vmware_guest:
+      hostname: {{vCenter}}
+      username: {{}}
+      datacenter: {{ Cluster }}
+      password: {{password}}
+      validate_certs: no
+      uuid: "{{ vminfo.instance.config.uuid }}"
+      name: "{{ new-virtual-machine }}"
+      state: present
+    delegate_to: localhost
