@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - vmware_guest_info:
+      hostname: "{{ vCenter }}"
+      username: "{{ User }}"
+      password:  "{{ pass }}"
+      validate_certs: no
+      datacenter: "{{ Cluster }}"
+      name: "{{ vm_name }}"
+      schema: "vsphere"
+      properties: ["config.uuid"]
+    delegate_to: localhost
+    register: vminfo
+  - debug:
+      var: vminfo
+
+  - vmware_guest:
+      hostname: "{{vCenter}}"
+      username: "{{ User }}"
+      datacenter: "{{ Cluster }}"
+      password: "{{ password }}"
+      validate_certs: no
+      uuid: "{{ vminfo.instance.config.uuid }}"
+      name: "{{ new-virtual-machine }}"
+      state: present
+    delegate_to: localhost
